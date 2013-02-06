@@ -1,7 +1,7 @@
-PythonBrainFuck
-===============
+PythonBrainFuck, a minimalist BrainFuck interpreter in Python
+=============================================================
 
-A BrainFuck example:
+Here is a BrainFuck example:
 ```bf
 +++++ +++++             initialize counter (cell #0) to 10
 [                       use loop to set the next four cells to 70/100/30/10
@@ -26,7 +26,7 @@ A BrainFuck example:
 > .                     print '\n'
 ```
 
-A small Python BrainFuck interpreter:
+How to use the interpreter:
 ```shell
 $ ./bf.py hello.bf
 Hello World!
