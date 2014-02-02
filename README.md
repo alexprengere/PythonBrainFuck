@@ -30,7 +30,7 @@ How to use the interpreter:
 ```shell
 $ ./bf.py hello.bf
 Hello World!
-$ echo hello.bf | ./bf.py
+$ cat hello.bf | ./bf.py
 Hello World!
 ```
 
