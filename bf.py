@@ -33,8 +33,6 @@ def get_char():
 def init():
     """We have lazy cell creation with this.
     """
-    global CELLS, IND
-
     if len(CELLS) - 1 < IND:
         CELLS.append(0)
 
@@ -54,7 +52,7 @@ def nested(chars):
 def run(chars):
     """Run a sequence of chars.
     """
-    global CELLS, IND
+    global IND
 
     init()
     position = 0
