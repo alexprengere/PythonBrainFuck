@@ -1,5 +1,5 @@
-PythonBrainFuck, a minimalist BrainFuck interpreter in Python
-=============================================================
+PythonBrainFuck, a BrainFuck interpreter in Python
+==================================================
 
 Here is a BrainFuck example:
 ```bf
