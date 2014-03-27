@@ -27,9 +27,10 @@ Here is a BrainFuck example:
 ```
 
 How to use the interpreter:
-```shell
+```bash
 $ ./bf.py hello.bf
 Hello World!
+
 $ cat hello.bf | ./bf.py
 Hello World!
 ```
