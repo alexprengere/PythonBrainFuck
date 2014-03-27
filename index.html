@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Pythonbrainfuck by alexprengere</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/alexprengere/PythonBrainFuck">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/alexprengere/PythonBrainFuck/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/alexprengere/PythonBrainFuck/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Pythonbrainfuck</h1>
+          <p>A minimalist BrainFuck interpreter in Python</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/alexprengere">alexprengere</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>
+<a name="pythonbrainfuck-a-minimalist-brainfuck-interpreter-in-python" class="anchor" href="#pythonbrainfuck-a-minimalist-brainfuck-interpreter-in-python"><span class="octicon octicon-link"></span></a>PythonBrainFuck, a minimalist BrainFuck interpreter in Python</h1>
+
+<p>Here is a BrainFuck example:</p>
+
+<div class="highlight highlight-bf"><pre><span class="nb">+++++</span><span class="c"> </span><span class="nb">+++++</span><span class="c">             initialize counter (cell #0) to 10</span>
+<span class="k">[</span><span class="c">                       use loop to set the next four cells to 70/100/30/10</span>
+<span class="nv">&gt;</span><span class="c"> </span><span class="nb">+++++</span><span class="c"> </span><span class="nb">++</span><span class="c">              add  7 to cell #1</span>
+<span class="nv">&gt;</span><span class="c"> </span><span class="nb">+++++</span><span class="c"> </span><span class="nb">+++++</span><span class="c">           add 10 to cell #2</span>
+<span class="nv">&gt;</span><span class="c"> </span><span class="nb">+++</span><span class="c">                   add  3 to cell #3</span>
+<span class="nv">&gt;</span><span class="c"> </span><span class="nb">+</span><span class="c">                     add  1 to cell #4</span>
+<span class="nv">&lt;&lt;&lt;&lt;</span><span class="c"> </span><span class="nb">-</span><span class="c">                  decrement counter (cell #0)</span>
+<span class="k">]</span><span class="c"></span>
+<span class="nv">&gt;</span><span class="c"> </span><span class="nb">++</span><span class="c"> </span><span class="nt">.</span><span class="c">                  print 'H'</span>
+<span class="nv">&gt;</span><span class="c"> </span><span class="nb">+</span><span class="c"> </span><span class="nt">.</span><span class="c">                   print 'e'</span>
+<span class="nb">+++++</span><span class="c"> </span><span class="nb">++</span><span class="c"> </span><span class="nt">.</span><span class="c">              print 'l'</span>
+<span class="nt">.</span><span class="c">                       print 'l'</span>
+<span class="nb">+++</span><span class="c"> </span><span class="nt">.</span><span class="c">                   print 'o'</span>
+<span class="nv">&gt;</span><span class="c"> </span><span class="nb">++</span><span class="c"> </span><span class="nt">.</span><span class="c">                  print ' '</span>
+<span class="nv">&lt;&lt;</span><span class="c"> </span><span class="nb">+++++</span><span class="c"> </span><span class="nb">+++++</span><span class="c"> </span><span class="nb">+++++</span><span class="c"> </span><span class="nt">.</span><span class="c">  print 'W'</span>
+<span class="nv">&gt;</span><span class="c"> </span><span class="nt">.</span><span class="c">                     print 'o'</span>
+<span class="nb">+++</span><span class="c"> </span><span class="nt">.</span><span class="c">                   print 'r'</span>
+<span class="nb">-----</span><span class="c"> </span><span class="nb">-</span><span class="c"> </span><span class="nt">.</span><span class="c">               print 'l'</span>
+<span class="nb">-----</span><span class="c"> </span><span class="nb">---</span><span class="c"> </span><span class="nt">.</span><span class="c">             print 'd'</span>
+<span class="nv">&gt;</span><span class="c"> </span><span class="nb">+</span><span class="c"> </span><span class="nt">.</span><span class="c">                   print '!'</span>
+<span class="nv">&gt;</span><span class="c"> </span><span class="nt">.</span><span class="c">                     print '\n'</span>
+</pre></div>
+
+<p>How to use the interpreter:</p>
+
+<pre lang="shell"><code>$ ./bf.py hello.bf
+Hello World!
+$ cat hello.bf | ./bf.py
+Hello World!
+</code></pre>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
