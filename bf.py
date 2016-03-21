@@ -5,9 +5,8 @@
 Python Brainfuck interpreter.
 """
 
-#pylint: disable=pointless-statement
-from __future__ import with_statement, print_function
-from sys import argv, stdin, stdout
+import sys
+import os
 
 
 def create_jump_table(chars):
@@ -40,26 +39,21 @@ class Cells(object):
     def set(self, n):
         self.cells[self.index] = n
 
-    def __iadd__(self, n): # +=
-        self.cells[self.index] += n
-        return self
+    def increment(self):
+        self.cells[self.index] += 1
 
-    def __isub__(self, n): # -=
-        self.cells[self.index] -= n
-        if self.cells[self.index] < 0:
-            self.cells = 0
-        return self
+    def decrement(self):
+        if self.cells[self.index] > 0:
+            self.cells[self.index] -= 1
 
-    def __lshift__(self, n): # <<
-        self.index -= n
-        if self.index < 0:
-            self.index = 0
+    def left(self):
+        if self.index > 0:
+            self.index -= 1
 
-    def __rshift__(self, n): # >>
-        for _ in range(n):
-            self.index += 1
-            if self.index >= len(self.cells):
-                self.cells.append(0)
+    def right(self):
+        self.index += 1
+        if self.index >= len(self.cells):
+            self.cells.append(0)
 
 
 def run(chars):
@@ -72,22 +66,22 @@ def run(chars):
         char = chars[position]
 
         if char == '>':
-            cells >> 1
+            cells.right()
 
         elif char == '<':
-            cells << 1
+            cells.left()
 
         elif char == '+':
-            cells += 1
+            cells.increment()
 
         elif char == '-':
-            cells -= 1
+            cells.decrement()
 
         elif char == '.':
-            stdout.write(chr(cells.get() % 256))
+            os.write(1, chr(cells.get() % 256))
 
         elif char == ',':
-            cells.set(ord(stdin.read(1)))
+            cells.set(ord(os.read(0, 1)[0]))
 
         elif char == '[' and cells.get() == 0:
             position = jump_table[position]
@@ -98,18 +92,39 @@ def run(chars):
         position += 1
 
 
-if __name__ == '__main__':
+def remove_comments(chars):
+    codes = '<>[]-+,.'
+    tmp = ""
+    for c in chars:
+        if c in codes:
+            tmp += c
+    return tmp
 
-    if len(argv) == 1 and stdin.isatty():
-        print('Usage: {0} file'.format(argv[0]))
-        print('Usage: cat file | {0}'.format(argv[0]))
-        exit(1)
 
-    if not stdin.isatty():
-        chars = ''.join(row for row in stdin)
-    else:
-        with open(argv[1]) as f:
-            chars = f.read()
+def entry_point(argv):
+    try:
+        filename = argv[1]
+    except IndexError:
+        print "Usage: %s program.bf" % argv[0]
+        return 1
 
-    codes = set('<>[]-+,.')
-    run(''.join(c for c in chars if c in codes))
+    fp = os.open(filename, os.O_RDONLY, 0777)
+    chars = ""
+    while True:
+        read = os.read(fp, 4096)
+        if len(read) == 0:
+            break
+        chars += read
+    os.close(fp)
+
+    run(remove_comments(chars))
+    return 0
+
+
+def target(*args):
+    #pylint: disable=unused-argument
+    return entry_point, None
+
+
+if __name__ == "__main__":
+    entry_point(sys.argv)
