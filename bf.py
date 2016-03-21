@@ -100,16 +100,16 @@ def run(chars):
 
 if __name__ == '__main__':
 
-    if len(argv) > 1:
-        with open(argv[1]) as f:
-            chars = f.read()
-
-    elif not stdin.isatty():
-        chars = ''.join(row for row in stdin)
-
-    else:
+    if len(argv) == 1 and stdin.isatty():
         print('Usage: {0} file'.format(argv[0]))
         print('Usage: cat file | {0}'.format(argv[0]))
         exit(1)
 
-    run(chars)
+    if not stdin.isatty():
+        chars = ''.join(row for row in stdin)
+    else:
+        with open(argv[1]) as f:
+            chars = f.read()
+
+    codes = set('<>[]-+,.')
+    run(''.join(c for c in chars if c in codes))
