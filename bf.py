@@ -5,103 +5,111 @@
 Python Brainfuck interpreter.
 """
 
-from __future__ import with_statement
+#pylint: disable=pointless-statement
+from __future__ import with_statement, print_function
 from sys import argv, stdin, stdout
 
-# Cells and pointer
-IND   = 0
-CELLS = []
+
+def create_jump_table(chars):
+    jump_table = {}
+    left_positions = []
+
+    position = 0
+    for char in chars:
+        if char == '[':
+            left_positions.append(position)
+
+        elif char == ']':
+            left = left_positions.pop()
+            right = position
+            jump_table[left] = right
+            jump_table[right] = left
+        position += 1
+
+    return jump_table
 
 
-def every_char_from(flow):
-    """Yields every char from flow.
-    """
-    for row in flow:
-        for char in row:
-            yield char
+class Cells(object):
+    def __init__(self):
+        self.cells = [0]
+        self.index = 0
 
+    def get(self):
+        return self.cells[self.index]
 
-def get_char():
-    """Quick and dirty getchar implementation.
-    """
-    try:
-        return raw_input()[0]
-    except EOFError:
-        return '0'
+    def set(self, n):
+        self.cells[self.index] = n
 
+    def __iadd__(self, n): # +=
+        self.cells[self.index] += n
+        return self
 
-def init():
-    """We have lazy cell creation with this.
-    """
-    if len(CELLS) - 1 < IND:
-        CELLS.append(0)
+    def __isub__(self, n): # -=
+        self.cells[self.index] -= n
+        if self.cells[self.index] < 0:
+            self.cells = 0
+        return self
 
+    def __lshift__(self, n): # <<
+        self.index -= n
+        if self.index < 0:
+            self.index = 0
 
-def nested(chars):
-    """Looking for the next same-level ']'.
-    """
-    i = 0
-
-    while chars[0:i+1].count("[") != chars[0:i+1].count("]"):
-        i += 1
-
-    return chars[1:i]
-
+    def __rshift__(self, n): # >>
+        for _ in range(n):
+            self.index += 1
+            if self.index >= len(self.cells):
+                self.cells.append(0)
 
 
 def run(chars):
-    """Run a sequence of chars.
-    """
-    global IND
+    """Actual BrainFuck Interpreter."""
+    jump_table = create_jump_table(chars)
+    cells = Cells()
 
-    init()
     position = 0
-
     while position < len(chars):
         char = chars[position]
 
         if char == '>':
-            IND += 1
-            init() # if it is a not-yet-visited cell, we put a 0
+            cells >> 1
 
         elif char == '<':
-            if IND: # IND is always >= 0
-                IND -= 1
+            cells << 1
 
         elif char == '+':
-            CELLS[IND] += 1
+            cells += 1
 
         elif char == '-':
-            if CELLS[IND]: # values are >= 0
-                CELLS[IND] -= 1
+            cells -= 1
 
         elif char == '.':
-            stdout.write(chr(CELLS[IND] % 256))
+            stdout.write(chr(cells.get() % 256))
 
         elif char == ',':
-            CELLS[IND] = ord(get_char())
+            cells.set(ord(stdin.read(1)))
 
-        elif char == '[':
-            nest = nested(chars[position:])
+        elif char == '[' and cells.get() == 0:
+            position = jump_table[position]
 
-            while CELLS[IND]:
-                run(nest)
-
-            position += len(nest) + 1
+        elif char == ']' and cells.get() != 0:
+            position = jump_table[position]
 
         position += 1
 
 
 if __name__ == '__main__':
 
-    if not stdin.isatty():
-        run(list(every_char_from(stdin)))
-
-    elif len(argv) > 1:
+    if len(argv) > 1:
         with open(argv[1]) as f:
-            run(list(every_char_from(f)))
+            chars = f.read()
+
+    elif not stdin.isatty():
+        chars = ''.join(row for row in stdin)
 
     else:
-        print 'Usage: %s file' % argv[0]
-        print 'Usage: cat file | %s' % argv[0]
+        print('Usage: {0} file'.format(argv[0]))
+        print('Usage: cat file | {0}'.format(argv[0]))
+        exit(1)
 
+    run(chars)
