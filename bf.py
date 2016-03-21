@@ -3,10 +3,35 @@
 
 """
 Python Brainfuck interpreter.
+
+Jitted using http://morepypy.blogspot.fr/2011/04/tutorial-part-2-adding-jit.html
 """
 
 import sys
 import os
+
+try:
+    from rpython.rlib.jit import JitDriver, purefunction
+except ImportError:
+    class JitDriver(object):
+        def __init__(self, **kw):
+            pass
+        def jit_merge_point(self, **kw):
+            pass
+        def can_enter_jit(self, **kw):
+            pass
+
+    def purefunction(f):
+        return f
+
+
+jitdriver = JitDriver(greens=['position', 'chars', 'jump_table'],
+                      reds=['cells'])
+
+
+@purefunction
+def get_jump(jump_table, pos):
+    return jump_table[pos]
 
 
 def create_jump_table(chars):
@@ -63,6 +88,9 @@ def run(chars):
 
     position = 0
     while position < len(chars):
+        jitdriver.jit_merge_point(position=position, cells=cells, chars=chars,
+                                  jump_table=jump_table)
+
         char = chars[position]
 
         if char == '>':
@@ -84,10 +112,10 @@ def run(chars):
             cells.set(ord(os.read(0, 1)[0]))
 
         elif char == '[' and cells.get() == 0:
-            position = jump_table[position]
+            position = get_jump(jump_table, position)
 
         elif char == ']' and cells.get() != 0:
-            position = jump_table[position]
+            position = get_jump(jump_table, position)
 
         position += 1
 
@@ -124,6 +152,12 @@ def entry_point(argv):
 def target(*args):
     #pylint: disable=unused-argument
     return entry_point, None
+
+
+def jitpolicy(driver):
+    #pylint: disable=unused-argument
+    from rpython.jit.codewriter.policy import JitPolicy
+    return JitPolicy()
 
 
 if __name__ == "__main__":
