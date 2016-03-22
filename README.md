@@ -1,5 +1,5 @@
-A BrainFuck interpreter in Python
-=================================
+A very (!) fast BrainFuck interpreter in Python
+===============================================
 
 Here is a BrainFuck example:
 ```bf
@@ -45,7 +45,7 @@ mv pypy-5.0.0-src pypy-src
 
 Then you can build from the Python script `bf.py` an executable binary `bf-c`:
 ```bash
-# This will take about 5 minutes
+# This will take about 1 minute
 python pypy-src/rpython/bin/rpython bf.py
 # Mandelbrot completes in a bit more than 1 minute
 ./bf-c examples/mandel.b
