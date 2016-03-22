@@ -26,7 +26,7 @@ except ImportError:
 
 
 jitdriver = JitDriver(greens=['position', 'chars', 'jump_table'],
-                      reds=['cells'])
+                      reds=['ptr'])
 
 
 @purefunction
@@ -53,68 +53,70 @@ def create_jump_table(chars):
     return jump_table
 
 
-class Cells(object):
+class Array(object):
     def __init__(self):
-        self.cells = [0]
-        self.index = 0
+        self._cells = [0] * 10000 # preallocation
+        self._index = 0
 
     def get(self):
-        return self.cells[self.index]
+        return self._cells[self._index]
 
     def set(self, n):
-        self.cells[self.index] = n
+        self._cells[self._index] = n
 
     def increment(self):
-        self.cells[self.index] += 1
+        self._cells[self._index] += 1
 
     def decrement(self):
-        if self.cells[self.index] > 0:
-            self.cells[self.index] -= 1
-
-    def left(self):
-        if self.index > 0:
-            self.index -= 1
+        if self._cells[self._index] > 0:
+            self._cells[self._index] -= 1
 
     def right(self):
-        self.index += 1
-        if self.index >= len(self.cells):
-            self.cells.append(0)
+        self._index += 1
+        if self._index >= len(self._cells):
+            self._cells.append(0)
+
+    def left(self):
+        if self._index > 0:
+            self._index -= 1
 
 
 def run(chars):
     """Actual BrainFuck Interpreter."""
     jump_table = create_jump_table(chars)
-    cells = Cells()
+    ptr = Array()
 
     position = 0
     while position < len(chars):
-        jitdriver.jit_merge_point(position=position, cells=cells, chars=chars,
+        jitdriver.jit_merge_point(position=position,
+                                  ptr=ptr,
+                                  chars=chars,
                                   jump_table=jump_table)
 
         char = chars[position]
 
         if char == '>':
-            cells.right()
+            ptr.right()
 
         elif char == '<':
-            cells.left()
+            ptr.left()
 
         elif char == '+':
-            cells.increment()
+            ptr.increment()
 
         elif char == '-':
-            cells.decrement()
+            ptr.decrement()
 
         elif char == '.':
-            os.write(1, chr(cells.get() % 256))
+            os.write(1, chr(ptr.get() % 256))
 
         elif char == ',':
-            cells.set(ord(os.read(0, 1)[0]))
+            ptr.set(ord(os.read(0, 1)[0]))
 
-        elif char == '[' and cells.get() == 0:
+        elif char == '[' and ptr.get() == 0:
             position = get_jump(jump_table, position)
 
-        elif char == ']' and cells.get() != 0:
+        elif char == ']' and ptr.get() != 0:
             position = get_jump(jump_table, position)
 
         position += 1
