@@ -7,37 +7,38 @@
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/github-dark.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/respond.js"></script>
+    <script src="javascripts/main.js"></script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" href="stylesheets/ie.css">
     <![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
   </head>
   <body>
-      <div id="header">
-        <nav>
-          <li class="fork"><a href="https://github.com/alexprengere/PythonBrainFuck">View On GitHub</a></li>
-          <li class="downloads"><a href="https://github.com/alexprengere/PythonBrainFuck/zipball/master">ZIP</a></li>
-          <li class="downloads"><a href="https://github.com/alexprengere/PythonBrainFuck/tarball/master">TAR</a></li>
-          <li class="title">DOWNLOADS</li>
-        </nav>
-      </div><!-- end header -->
+
+      <header>
+        <h1>PythonBrainFuck</h1>
+        <p>A very (!) fast BrainFuck interpreter in Python</p>
+      </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/alexprengere/PythonBrainFuck" class="button fork"><strong>View On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/alexprengere/PythonBrainFuck/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/alexprengere/PythonBrainFuck/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+      </div><!-- end banner -->
 
     <div class="wrapper">
-
+      <nav>
+        <ul></ul>
+      </nav>
       <section>
-        <div id="title">
-          <h1>PythonBrainFuck</h1>
-          <p>A very (!) fast BrainFuck interpreter in Python</p>
-          <hr>
-          <span class="credits left">Project maintained by <a href="https://github.com/alexprengere">alexprengere</a></span>
-          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
-        </div>
-
         <p>Here is a BrainFuck example:</p>
 
 <div class="highlight highlight-source-bf"><pre><span class="pl-c1">+++++</span><span class="pl-c"> </span><span class="pl-c1">+++++</span><span class="pl-c">             initialize counter (cell #0) to 10</span>
@@ -104,7 +105,10 @@ python pypy-src/rpython/bin/rpython --opt=jit bf.py
 
 <p>The JIT addition contains code from <a href="http://morepypy.blogspot.fr/2011/04/tutorial-part-2-adding-jit.html">this amazing tutorial on JITs</a>.</p>
       </section>
-
+      <footer>
+        <p>Project maintained by <a href="https://github.com/alexprengere">alexprengere</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
+      </footer>
     </div>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
     
