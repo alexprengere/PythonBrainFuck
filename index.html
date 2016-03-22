@@ -32,16 +32,13 @@
       <section>
         <div id="title">
           <h1>PythonBrainFuck</h1>
-          <p>A BrainFuck interpreter in Python</p>
+          <p>A very (!) fast BrainFuck interpreter in Python</p>
           <hr>
           <span class="credits left">Project maintained by <a href="https://github.com/alexprengere">alexprengere</a></span>
           <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
         </div>
 
-        <h1>
-<a id="a-brainfuck-interpreter-in-python" class="anchor" href="#a-brainfuck-interpreter-in-python" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>A BrainFuck interpreter in Python</h1>
-
-<p>Here is a BrainFuck example:</p>
+        <p>Here is a BrainFuck example:</p>
 
 <div class="highlight highlight-source-bf"><pre><span class="pl-c1">+++++</span><span class="pl-c"> </span><span class="pl-c1">+++++</span><span class="pl-c">             initialize counter (cell #0) to 10</span>
 [<span class="pl-c">                       use loop to set the next four cells to 70/100/30/10</span>
@@ -81,7 +78,7 @@ mv pypy-5.0.0-src pypy-src</pre></div>
 
 <p>Then you can build from the Python script <code>bf.py</code> an executable binary <code>bf-c</code>:</p>
 
-<div class="highlight highlight-source-shell"><pre><span class="pl-c"># This will take about 5 minutes</span>
+<div class="highlight highlight-source-shell"><pre><span class="pl-c"># This will take about 1 minute</span>
 python pypy-src/rpython/bin/rpython bf.py
 <span class="pl-c"># Mandelbrot completes in a bit more than 1 minute</span>
 ./bf-c examples/mandel.b</pre></div>
