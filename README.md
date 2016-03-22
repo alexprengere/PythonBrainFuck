@@ -66,6 +66,6 @@ Here is a summary of the speed gain I could observe on a Fedora (22) VM (4 cores
 * the `bf-c` without JIT: 1min15s (x200)
 * the `bf-c` with JIT: 15 seconds (x1000)
 
-Interpreters written in C taken from [here](http://mazonka.com/brainf/) are available in the `interpreters` folder, and take from 15 to 20 seconds to run.
+I also tested optimized Brainfuck interpreters written in C ([source](http://mazonka.com/brainf/)). After compilation with `gcc -O3` (5.1), running `mandel.b` take from 15 to 20 seconds to run, so it is in the same order of magnitude as the JIT version.
 
 The JIT addition contains code from [this amazing tutorial on JITs](http://morepypy.blogspot.fr/2011/04/tutorial-part-2-adding-jit.html).
