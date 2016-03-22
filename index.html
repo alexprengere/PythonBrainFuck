@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>PythonBrainFuck by alexprengere</title>
     <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <link rel="stylesheet" href="stylesheets/github-dark.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="javascripts/respond.js"></script>
     <!--[if lt IE 9]>
@@ -39,41 +39,73 @@
         </div>
 
         <h1>
-<a name="a-brainfuck-interpreter-in-python" class="anchor" href="#a-brainfuck-interpreter-in-python"><span class="octicon octicon-link"></span></a>A BrainFuck interpreter in Python</h1>
+<a id="a-brainfuck-interpreter-in-python" class="anchor" href="#a-brainfuck-interpreter-in-python" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>A BrainFuck interpreter in Python</h1>
 
 <p>Here is a BrainFuck example:</p>
 
-<div class="highlight highlight-bf"><pre><span class="nb">+++++</span><span class="c"> </span><span class="nb">+++++</span><span class="c">             initialize counter (cell #0) to 10</span>
-<span class="k">[</span><span class="c">                       use loop to set the next four cells to 70/100/30/10</span>
-<span class="nv">&gt;</span><span class="c"> </span><span class="nb">+++++</span><span class="c"> </span><span class="nb">++</span><span class="c">              add  7 to cell #1</span>
-<span class="nv">&gt;</span><span class="c"> </span><span class="nb">+++++</span><span class="c"> </span><span class="nb">+++++</span><span class="c">           add 10 to cell #2</span>
-<span class="nv">&gt;</span><span class="c"> </span><span class="nb">+++</span><span class="c">                   add  3 to cell #3</span>
-<span class="nv">&gt;</span><span class="c"> </span><span class="nb">+</span><span class="c">                     add  1 to cell #4</span>
-<span class="nv">&lt;&lt;&lt;&lt;</span><span class="c"> </span><span class="nb">-</span><span class="c">                  decrement counter (cell #0)</span>
-<span class="k">]</span><span class="c"></span>
-<span class="nv">&gt;</span><span class="c"> </span><span class="nb">++</span><span class="c"> </span><span class="nt">.</span><span class="c">                  print 'H'</span>
-<span class="nv">&gt;</span><span class="c"> </span><span class="nb">+</span><span class="c"> </span><span class="nt">.</span><span class="c">                   print 'e'</span>
-<span class="nb">+++++</span><span class="c"> </span><span class="nb">++</span><span class="c"> </span><span class="nt">.</span><span class="c">              print 'l'</span>
-<span class="nt">.</span><span class="c">                       print 'l'</span>
-<span class="nb">+++</span><span class="c"> </span><span class="nt">.</span><span class="c">                   print 'o'</span>
-<span class="nv">&gt;</span><span class="c"> </span><span class="nb">++</span><span class="c"> </span><span class="nt">.</span><span class="c">                  print ' '</span>
-<span class="nv">&lt;&lt;</span><span class="c"> </span><span class="nb">+++++</span><span class="c"> </span><span class="nb">+++++</span><span class="c"> </span><span class="nb">+++++</span><span class="c"> </span><span class="nt">.</span><span class="c">  print 'W'</span>
-<span class="nv">&gt;</span><span class="c"> </span><span class="nt">.</span><span class="c">                     print 'o'</span>
-<span class="nb">+++</span><span class="c"> </span><span class="nt">.</span><span class="c">                   print 'r'</span>
-<span class="nb">-----</span><span class="c"> </span><span class="nb">-</span><span class="c"> </span><span class="nt">.</span><span class="c">               print 'l'</span>
-<span class="nb">-----</span><span class="c"> </span><span class="nb">---</span><span class="c"> </span><span class="nt">.</span><span class="c">             print 'd'</span>
-<span class="nv">&gt;</span><span class="c"> </span><span class="nb">+</span><span class="c"> </span><span class="nt">.</span><span class="c">                   print '!'</span>
-<span class="nv">&gt;</span><span class="c"> </span><span class="nt">.</span><span class="c">                     print '\n'</span>
-</pre></div>
+<div class="highlight highlight-source-bf"><pre><span class="pl-c1">+++++</span><span class="pl-c"> </span><span class="pl-c1">+++++</span><span class="pl-c">             initialize counter (cell #0) to 10</span>
+[<span class="pl-c">                       use loop to set the next four cells to 70/100/30/10</span>
+<span class="pl-k">&gt;</span><span class="pl-c"> </span><span class="pl-c1">+++++</span><span class="pl-c"> </span><span class="pl-c1">++</span><span class="pl-c">              add  7 to cell #1</span>
+<span class="pl-k">&gt;</span><span class="pl-c"> </span><span class="pl-c1">+++++</span><span class="pl-c"> </span><span class="pl-c1">+++++</span><span class="pl-c">           add 10 to cell #2</span>
+<span class="pl-k">&gt;</span><span class="pl-c"> </span><span class="pl-c1">+++</span><span class="pl-c">                   add  3 to cell #3</span>
+<span class="pl-k">&gt;</span><span class="pl-c"> </span><span class="pl-c1">+</span><span class="pl-c">                     add  1 to cell #4</span>
+<span class="pl-k">&lt;&lt;&lt;&lt;</span><span class="pl-c"> </span><span class="pl-c1">-</span><span class="pl-c">                  decrement counter (cell #0)</span>
+]<span class="pl-c"></span>
+<span class="pl-k">&gt;</span><span class="pl-c"> </span><span class="pl-c1">++</span><span class="pl-c"> </span><span class="pl-en">.</span><span class="pl-c">                  print 'H'</span>
+<span class="pl-k">&gt;</span><span class="pl-c"> </span><span class="pl-c1">+</span><span class="pl-c"> </span><span class="pl-en">.</span><span class="pl-c">                   print 'e'</span>
+<span class="pl-c1">+++++</span><span class="pl-c"> </span><span class="pl-c1">++</span><span class="pl-c"> </span><span class="pl-en">.</span><span class="pl-c">              print 'l'</span>
+<span class="pl-en">.</span><span class="pl-c">                       print 'l'</span>
+<span class="pl-c1">+++</span><span class="pl-c"> </span><span class="pl-en">.</span><span class="pl-c">                   print 'o'</span>
+<span class="pl-k">&gt;</span><span class="pl-c"> </span><span class="pl-c1">++</span><span class="pl-c"> </span><span class="pl-en">.</span><span class="pl-c">                  print ' '</span>
+<span class="pl-k">&lt;&lt;</span><span class="pl-c"> </span><span class="pl-c1">+++++</span><span class="pl-c"> </span><span class="pl-c1">+++++</span><span class="pl-c"> </span><span class="pl-c1">+++++</span><span class="pl-c"> </span><span class="pl-en">.</span><span class="pl-c">  print 'W'</span>
+<span class="pl-k">&gt;</span><span class="pl-c"> </span><span class="pl-en">.</span><span class="pl-c">                     print 'o'</span>
+<span class="pl-c1">+++</span><span class="pl-c"> </span><span class="pl-en">.</span><span class="pl-c">                   print 'r'</span>
+<span class="pl-c1">-----</span><span class="pl-c"> </span><span class="pl-c1">-</span><span class="pl-c"> </span><span class="pl-en">.</span><span class="pl-c">               print 'l'</span>
+<span class="pl-c1">-----</span><span class="pl-c"> </span><span class="pl-c1">---</span><span class="pl-c"> </span><span class="pl-en">.</span><span class="pl-c">             print 'd'</span>
+<span class="pl-k">&gt;</span><span class="pl-c"> </span><span class="pl-c1">+</span><span class="pl-c"> </span><span class="pl-en">.</span><span class="pl-c">                   print '!'</span>
+<span class="pl-k">&gt;</span><span class="pl-c"> </span><span class="pl-en">.</span><span class="pl-c">                     print '\n'</span></pre></div>
 
 <p>How to use the interpreter:</p>
 
-<div class="highlight highlight-bash"><pre><span class="nv">$ </span>./bf.py hello.bf
-Hello World!
+<div class="highlight highlight-source-shell"><pre>./bf.py hello.bf
+Hello World<span class="pl-k">!</span></pre></div>
 
-<span class="nv">$ </span>cat hello.bf <span class="p">|</span> ./bf.py
-Hello World!
-</pre></div>
+<h2>
+<a id="speeding-things-up" class="anchor" href="#speeding-things-up" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Speeding things up</h2>
+
+<p>The interpreter is actually written in Rpython, so it can be statically compiled using the Pypy toolchain. Download the latest source of Pypy and uncompress it in a <code>pypy-src</code> folder.</p>
+
+<div class="highlight highlight-source-shell"><pre>wget <span class="pl-s"><span class="pl-pds">'</span>https://bitbucket.org/pypy/pypy/downloads/pypy-5.0.0-src.tar.bz2<span class="pl-pds">'</span></span>
+tar -xvjf pypy-5.0.0-src.tar.bz2
+mv pypy-5.0.0-src pypy-src</pre></div>
+
+<p>Then you can build from the Python script <code>bf.py</code> an executable binary <code>bf-c</code>:</p>
+
+<div class="highlight highlight-source-shell"><pre><span class="pl-c"># This will take about 5 minutes</span>
+python pypy-src/rpython/bin/rpython bf.py
+<span class="pl-c"># Mandelbrot completes in a bit more than 1 minute</span>
+./bf-c examples/mandel.b</pre></div>
+
+<p>You can rebuild the <code>bf-c</code> using <code>--opt=jit</code> to add a JIT to your BrainFuck interpreter:</p>
+
+<div class="highlight highlight-source-shell"><pre><span class="pl-c"># This will take about 25 minutes</span>
+python pypy-src/rpython/bin/rpython --opt=jit bf.py
+<span class="pl-c"># Mandelbrot now completes in 15 seconds(!)</span>
+./bf-c examples/mandel.b</pre></div>
+
+<p>Here is a summary of the speed gain I could observe on a Fedora (22) VM (4 cores, 4Go of RAM), running <code>mandel.b</code>:</p>
+
+<ul>
+<li>the initial <code>bf.py</code> with CPython (2.7): about 4 hours (baseline)</li>
+<li>the initial <code>bf.py</code> with Pypy (2.4): 8 minutes (30x)</li>
+<li>the initial <code>bf.py</code> with Pypy (5.0.1): 4 minutes (60x)</li>
+<li>the <code>bf-c</code> without JIT: 1min15s (x200)</li>
+<li>the <code>bf-c</code> with JIT: 15 seconds (x1000)</li>
+</ul>
+
+<p>I also tested optimized Brainfuck interpreters written in C (<a href="http://mazonka.com/brainf/">source</a>). After compilation with <code>gcc -O3</code> (5.1), running <code>mandel.b</code> take from 15 to 20 seconds to run, so it is in the same order of magnitude as the JIT version.</p>
+
+<p>The JIT addition contains code from <a href="http://morepypy.blogspot.fr/2011/04/tutorial-part-2-adding-jit.html">this amazing tutorial on JITs</a>.</p>
       </section>
 
     </div>
