@@ -30,8 +30,5 @@ How to use the interpreter:
 ```bash
 $ ./bf.py hello.bf
 Hello World!
-
-$ cat hello.bf | ./bf.py
-Hello World!
 ```
 
