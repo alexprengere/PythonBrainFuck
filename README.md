@@ -43,25 +43,29 @@ tar -xvjf pypy-5.0.0-src.tar.bz2
 mv pypy-5.0.0-src pypy-src
 ```
 
-Then you can build from the Python script `bf.py` an executable binary `bf-c`. This should take 5 minutes:
+Then you can build from the Python script `bf.py` an executable binary `bf-c`:
 ```bash
+# This will take about 5 minutes
 python pypy-src/rpython/bin/rpython bf.py
 # Mandelbrot completes in a bit more than 1 minute
 ./bf-c examples/mandel.b
 ```
 
-You can rebuild the `bf-c` using `--opt=jit` to add a JIT to your BrainFuck interpreter. This should take 20 minutes:
+You can rebuild the `bf-c` using `--opt=jit` to add a JIT to your BrainFuck interpreter:
 ```bash
+# This will take about 25 minutes
 python pypy-src/rpython/bin/rpython --opt=jit bf.py
-# Mandelbrot completes now in 15 seconds!
+# Mandelbrot now completes in 15 seconds(!)
 ./bf-c examples/mandel.b
 ```
 
 Here is a summary of the speed gain I could observe on a Fedora (22) VM (4 cores, 4Go of RAM), running `mandel.b`:
 * the initial `bf.py` with CPython (2.7): about 4 hours (baseline)
 * the initial `bf.py` with Pypy (2.4): 8 minutes (30x)
+* the initial `bf.py` with Pypy (5.0.1): 4 minutes (60x)
 * the `bf-c` without JIT: 1min15s (x200)
 * the `bf-c` with JIT: 15 seconds (x1000)
 
 Interpreters written in C taken from [here](http://mazonka.com/brainf/) are available in the `interpreters` folder, and take from 15 to 20 seconds to run.
+
 The JIT addition contains code from [this amazing tutorial on JITs](http://morepypy.blogspot.fr/2011/04/tutorial-part-2-adding-jit.html).
