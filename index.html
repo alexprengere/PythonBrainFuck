@@ -34,7 +34,7 @@
         <p>Here is a BrainFuck example:</p>
 
 <div class="highlight highlight-source-bf"><pre><span class="pl-c1">+++++</span><span class="pl-c"> </span><span class="pl-c1">+++++</span><span class="pl-c">             initialize counter (cell #0) to 10</span>
-[<span class="pl-c">                       loop to set the next four cells to 70/100/30/10</span>
+[<span class="pl-c">                       use loop to set the next four cells to 70/100/30/10</span>
 <span class="pl-k">&gt;</span><span class="pl-c"> </span><span class="pl-c1">+++++</span><span class="pl-c"> </span><span class="pl-c1">++</span><span class="pl-c">              add  7 to cell #1</span>
 <span class="pl-k">&gt;</span><span class="pl-c"> </span><span class="pl-c1">+++++</span><span class="pl-c"> </span><span class="pl-c1">+++++</span><span class="pl-c">           add 10 to cell #2</span>
 <span class="pl-k">&gt;</span><span class="pl-c"> </span><span class="pl-c1">+++</span><span class="pl-c">                   add  3 to cell #3</span>
@@ -57,7 +57,7 @@
 
 <p>How to use the interpreter:</p>
 
-<div class="highlight highlight-source-shell"><pre>$ ./bf.py hello.bf
+<div class="highlight highlight-source-shell"><pre>./bf.py hello.bf
 Hello World<span class="pl-k">!</span></pre></div>
 
 <h2>
@@ -93,7 +93,9 @@ python pypy-src/rpython/bin/rpython --opt=jit bf.py
 <li>the <code>bf-c</code> with JIT: 15 seconds (x1000)</li>
 </ul>
 
-<p>I also tested optimized Brainfuck interpreters written in C (<a href="http://mazonka.com/brainf/">source</a>). After compilation with <code>gcc -O3</code> (5.1), running <code>mandel.b</code> take from 15 to 20 seconds to run, so it is in the same order of magnitude as the JIT version.</p>
+<p>I also tested Brainfuck interpreters written in C (<a href="http://mazonka.com/brainf/">source</a>). After compilation with <code>gcc -O3</code> (5.1), running <code>mandel.b</code> take from 12 to 15 seconds to run, so it is in the same order of magnitude as the JIT version (without <code>-O3</code>, it takes 30 seconds).</p>
+
+<p>To complete those numbers, I finally tested a <a href="https://gist.github.com/Ricket/939687">Brainfuck to C translator</a>, then compiled the C version of the <code>mandel.b</code> program. With <code>-O3</code>, the compiled <code>mandel.b</code> runs in about 2 seconds (without <code>-O3</code>, it takes 30 seconds).</p>
 
 <p>The JIT addition contains code from <a href="http://morepypy.blogspot.fr/2011/04/tutorial-part-2-adding-jit.html">this amazing tutorial on JITs</a>.</p>
       </section>
