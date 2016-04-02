@@ -66,8 +66,8 @@ Here is a summary of the speed gain I could observe on a Fedora (22) VM (4 cores
 * the `bf-c` without JIT: 1min15s (x200)
 * the `bf-c` with JIT: 15 seconds (x1000)
 
-I also tested Brainfuck interpreters written in C ([source](http://mazonka.com/brainf/)). After compilation with `gcc -O3` (5.1), running `mandel.b` take from 12 to 15 seconds to run, so it is in the same order of magnitude as the JIT version (without `-O3`, it results in 30 seconds).
+I also tested Brainfuck interpreters written in C ([source](http://mazonka.com/brainf/)). After compilation with `gcc -O3` (5.1), running `mandel.b` take from 12 to 15 seconds to run, so it is in the same order of magnitude as the JIT version (without `-O3`, it takes 30 seconds).
 
-To complete those numbers, I finally tested a [Brainfuck to C translator](https://gist.github.com/Ricket/939687), then compiled the C version of the `mandel.b` program. With `-O3`, the compiled `mandel.b` runs in about 2 seconds (without `-O3`, it results in 30 seconds).
+To complete those numbers, I finally tested a [Brainfuck to C translator](https://gist.github.com/Ricket/939687), then compiled the C version of the `mandel.b` program. With `-O3`, the compiled `mandel.b` runs in about 2 seconds (without `-O3`, it takes 30 seconds).
 
 The JIT addition contains code from [this amazing tutorial on JITs](http://morepypy.blogspot.fr/2011/04/tutorial-part-2-adding-jit.html).
