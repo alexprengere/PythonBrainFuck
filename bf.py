@@ -13,11 +13,14 @@ import os
 try:
     from rpython.rlib.jit import JitDriver, purefunction
 except ImportError:
+
     class JitDriver(object):
         def __init__(self, **kw):
             pass
+
         def jit_merge_point(self, **kw):
             pass
+
         def can_enter_jit(self, **kw):
             pass
 
@@ -55,7 +58,7 @@ def create_jump_table(chars):
 
 class Array(object):
     def __init__(self):
-        self._cells = [0] * 10000 # preallocation
+        self._cells = [0] * 10000  # preallocation
         self._index = 0
 
     def get(self):
@@ -152,12 +155,10 @@ def entry_point(argv):
 
 
 def target(*args):
-    #pylint: disable=unused-argument
     return entry_point, None
 
 
 def jitpolicy(driver):
-    #pylint: disable=unused-argument
     from rpython.jit.codewriter.policy import JitPolicy
     return JitPolicy()
 
