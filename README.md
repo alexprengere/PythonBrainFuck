@@ -119,5 +119,6 @@ Here is a summary of the speed gain I could observe on a Fedora (22) VM (4 cores
 * the `mandel` binary built when compiling `mandel.b` directly: 1-2 seconds
 
 The JIT addition contains code from [this amazing tutorial on JITs](http://morepypy.blogspot.fr/2011/04/tutorial-part-2-adding-jit.html).
-If the BrainFuck interpreter `bf.py`  is a bit hairy to look at, you can check out the `step_by_step` folder to go from the simplest interpreter, then
-using only Rpython code, then with a JIT, then with some final optimizations.
+
+If the BrainFuck interpreter `bf.py`  is a bit hairy to look at, you can check out the `step_by_step` folder to go from the simplest interpreter, then a bit better, then
+using only Rpython code, then with the JIT-specific code, then with some final optimizations.

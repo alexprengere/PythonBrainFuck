@@ -1,12 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""
-Python Brainfuck interpreter.
-
-Jitted using http://morepypy.blogspot.fr/2011/04/tutorial-part-2-adding-jit.html
-"""
-
 import sys
 
 
