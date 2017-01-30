@@ -86,7 +86,7 @@ python pypy-src/rpython/bin/rpython --opt=jit bf.py
 
 ### Let's compare with a C implementation
 
-I also looked for [fast BrainFuck interpreters written in C](http://mazonka.com/brainf/). After compilation with `gcc -O3` (5.1), running `mandel.b` take from 12 to 15 seconds to run, so it is in the same order of magnitude as the JIT version (without `-O3`, it takes 30 seconds).
+I also looked for a [fast BrainFuck interpreter](http://mazonka.com/brainf/), written in C. After compilation with `gcc -O3` (5.1), running `mandel.b` take from 12 to 15 seconds to run, so it is in the same order of magnitude as the JIT version (without `-O3`, it takes 30 seconds).
 
 ```bash
 gcc -O3 ./resources/bff4.c -o bff4
