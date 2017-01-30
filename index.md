@@ -1,6 +1,3 @@
-A very (!) fast BrainFuck interpreter in Python
-===============================================
-
 Here is a BrainFuck example:
 
 ```bf
