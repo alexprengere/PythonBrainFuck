@@ -109,6 +109,7 @@ gcc -O3 mandel.c -o mandel
 ### Summary
 
 Here is a summary of the speed gain I could observe on a Fedora (22) VM (4 cores, 4Go of RAM), running `mandel.b`:
+
 * the initial `bf.py` with CPython (2.7): about 4 hours (baseline)
 * the initial `bf.py` with Pypy (2.4): 8 minutes (30x)
 * the initial `bf.py` with Pypy (5.0.1): 4 minutes (60x)
@@ -118,3 +119,5 @@ Here is a summary of the speed gain I could observe on a Fedora (22) VM (4 cores
 * the `mandel` binary built when compiling `mandel.b` directly: 1-2 seconds
 
 The JIT addition contains code from [this amazing tutorial on JITs](http://morepypy.blogspot.fr/2011/04/tutorial-part-2-adding-jit.html).
+If the BrainFuck interpreter `bf.py`  is a bit hairy to look at, you can check out the `step_by_step` folder to go from the simplest interpreter, then
+using only Rpython code, then with a JIT, then with some final optimizations.
