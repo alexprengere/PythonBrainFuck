@@ -1,0 +1,8 @@
+title: PythonBrainFuck
+description: A very (!) fast BrainFuck interpreter in Python
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-slate
+
+gems:
+  - jekyll-mentions
