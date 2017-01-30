@@ -34,10 +34,9 @@ How to use the interpreter:
 Hello World!
 ```
 
-Speeding things up
-------------------
+## Speeding things up
 
-# With Pypy
+### With Pypy
 
 If you try to run a long BrainFuck program like `mandel.b`, you will realize our interpreter is pretty slow.
 
@@ -56,9 +55,9 @@ mv pypy-5.6-linux_x86_64-portable pypy-portable
 ./pypy-portable/bin/pypy ./bf.py ./examples/mandel.b
 ```
 
-# With a JIT
+### With a JIT
 
-But we can go deeper ;). The interpreter is actually written in Rpython, so it can be statically compiled using the Pypy toolchain.
+The interpreter is actually written in Rpython, so it can be statically compiled using the Pypy toolchain.
 Download the latest source of Pypy and uncompress it in a `pypy-src` folder.
 
 ```bash
@@ -85,7 +84,7 @@ python pypy-src/rpython/bin/rpython --opt=jit bf.py
 ./bf-c examples/mandel.b
 ```
 
-# Let's compare with a C implementation
+### Let's compare with a C implementation
 
 I also tested BrainFuck interpreters written in C ([source](http://mazonka.com/brainf/)). After compilation with `gcc -O3` (5.1), running `mandel.b` take from 12 to 15 seconds to run, so it is in the same order of magnitude as the JIT version (without `-O3`, it takes 30 seconds).
 
@@ -95,7 +94,7 @@ gcc -O3 ./resources/bff4.c -o bff4
 ./bff4 < examples/mandel.b
 ```
 
-# Let's compile the BrainFuck directly
+### Let's compile the BrainFuck directly
 
 To complete those numbers, I finally tested a [Brainfuck to C translator](https://gist.github.com/Ricket/939687), then compiled the C version of the `mandel.b` program. With `-O3`, the compiled `mandel.b` runs in about 2 seconds (without `-O3`, it takes 30 seconds).
 
@@ -107,7 +106,7 @@ gcc -O3 mandel.c -o mandel
 ./mandel
 ```
 
-# Summary
+### Summary
 
 Here is a summary of the speed gain I could observe on a Fedora (22) VM (4 cores, 4Go of RAM), running `mandel.b`:
 * the initial `bf.py` with CPython (2.7): about 4 hours (baseline)
