@@ -1,4 +1,5 @@
 Here is a BrainFuck example:
+
 ```bf
 +++++ +++++             initialize counter (cell #0) to 10
 [                       use loop to set the next four cells to 70/100/30/10
@@ -24,6 +25,7 @@ Here is a BrainFuck example:
 ```
 
 How to use the interpreter:
+
 ```bash
 ./bf.py hello.bf
 Hello World!
@@ -41,6 +43,7 @@ mv pypy-5.0.0-src pypy-src
 ```
 
 Then you can build from the Python script `bf.py` an executable binary `bf-c`:
+
 ```bash
 # This will take about 1 minute
 python pypy-src/rpython/bin/rpython bf.py
@@ -49,6 +52,7 @@ python pypy-src/rpython/bin/rpython bf.py
 ```
 
 You can rebuild the `bf-c` using `--opt=jit` to add a JIT to your BrainFuck interpreter:
+
 ```bash
 # This will take about 25 minutes
 python pypy-src/rpython/bin/rpython --opt=jit bf.py
@@ -57,6 +61,7 @@ python pypy-src/rpython/bin/rpython --opt=jit bf.py
 ```
 
 Here is a summary of the speed gain I could observe on a Fedora (22) VM (4 cores, 4Go of RAM), running `mandel.b`:
+
 * the initial `bf.py` with CPython (2.7): about 4 hours (baseline)
 * the initial `bf.py` with Pypy (2.4): 8 minutes (30x)
 * the initial `bf.py` with Pypy (5.0.1): 4 minutes (60x)
