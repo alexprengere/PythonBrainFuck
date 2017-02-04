@@ -117,5 +117,5 @@ Here is a summary of the speed gain I could observe on Ubuntu 16.10 (core i7, 8G
 
 The JIT addition contains code from [this amazing tutorial on JITs](http://morepypy.blogspot.fr/2011/04/tutorial-part-2-adding-jit.html).
 
-If the BrainFuck interpreter `bf.py`  is a bit hairy to look at, you can check out the `step_by_step` folder to go from the simplest interpreter, then a bit better, then
+If the BrainFuck interpreter `bf.py`  is a bit hairy to look at, you can check out the [`step_by_step`](step_by_step) folder to go from the simplest interpreter, then a bit better, then
 using only Rpython code, then with the JIT-specific code, then with some final optimizations.
