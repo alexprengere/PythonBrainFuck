@@ -111,12 +111,10 @@ def run(chars):
             ptr.decrement()
 
         elif char == '.':
-            c = ptr.get() % 256
-            c = bytearray([c])
-            os.write(1, c)
+            os.write(1, chr(ptr.get() % 256))
 
         elif char == ',':
-            ptr.set(int(os.read(0, 1)))
+            ptr.set(ord(os.read(0, 1)[0]))
 
         elif char == '[' and ptr.get() == 0:
             position = get_jump(jump_table, position)
@@ -140,17 +138,17 @@ def entry_point(argv):
     try:
         filename = argv[1]
     except IndexError:
-        print("Usage: %s program.bf" % argv[0])
+        print "Usage: %s program.bf" % argv[0]
         return 1
 
-    fp = open(filename, 'r')
+    fp = os.open(filename, os.O_RDONLY, 0777)
     chars = ""
     while True:
-        read = fp.read(4096)
+        read = os.read(fp, 4096)
         if len(read) == 0:
             break
         chars += read
-    fp.close()
+    os.close(fp)
 
     run(remove_comments(chars))
     return 0
