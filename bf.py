@@ -111,10 +111,11 @@ def run(chars):
             ptr.decrement()
 
         elif char == '.':
-            os.write(1, chr(ptr.get() % 256))
+            sys.stdout.write(chr(ptr.get() % 256))
+            sys.stdout.flush()
 
         elif char == ',':
-            ptr.set(ord(os.read(0, 1)[0]))
+            ptr.set(ord(sys.stdin.read(1)))
 
         elif char == '[' and ptr.get() == 0:
             position = get_jump(jump_table, position)
@@ -138,17 +139,17 @@ def entry_point(argv):
     try:
         filename = argv[1]
     except IndexError:
-        print "Usage: %s program.bf" % argv[0]
+        print("Usage: %s program.bf" % argv[0])
         return 1
 
-    fp = os.open(filename, os.O_RDONLY, 0777)
+    fp = open(filename, 'r')
     chars = ""
     while True:
-        read = os.read(fp, 4096)
+        read = fp.read(4096)
         if len(read) == 0:
             break
         chars += read
-    os.close(fp)
+    fp.close()
 
     run(remove_comments(chars))
     return 0
