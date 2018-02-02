@@ -111,11 +111,12 @@ def run(chars):
             ptr.decrement()
 
         elif char == '.':
-            sys.stdout.write(chr(ptr.get() % 256))
-            sys.stdout.flush()
+            c = ptr.get() % 256
+            c = bytearray([c])
+            os.write(1, c)
 
         elif char == ',':
-            ptr.set(ord(sys.stdin.read(1)))
+            ptr.set(int(os.read(0, 1)))
 
         elif char == '[' and ptr.get() == 0:
             position = get_jump(jump_table, position)
