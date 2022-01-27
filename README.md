@@ -30,7 +30,7 @@ Here is a BrainFuck example:
 How to use the interpreter:
 
 ```bash
-./bf.py hello.bf
+python2 ./bf.py hello.bf
 Hello World!
 ```
 
@@ -41,36 +41,36 @@ Hello World!
 If you try to run a long BrainFuck program like `mandel.b`, you will realize our interpreter is pretty slow.
 
 ```bash
-./bf.py examples/mandel.b
+python2 ./bf.py examples/mandel.b
 # wait 1h45
 ```
 
-A first simple way of speeding things up is to use Pypy instead of CPython. You can use `portable-pypy` to get Pypy without compiling it yourself:
+A first simple way of speeding things up is to use Pypy instead of CPython.
 
 ```bash
-wget 'https://bitbucket.org/squeaky/portable-pypy/downloads/pypy-5.6-linux_x86_64-portable.tar.bz2'
-tar -xvjf 'pypy-5.6-linux_x86_64-portable.tar.bz2'
-mv pypy-5.6-linux_x86_64-portable pypy-portable
+wget 'https://downloads.python.org/pypy/pypy2.7-v7.3.6-linux64.tar.bz2'
+tar -xvjf 'pypy2.7-v7.3.6-linux64.tar.bz2'
+mv pypy2.7-v7.3.6-linux64 pypy
 # Only 1m30 now!
-./pypy-portable/bin/pypy ./bf.py ./examples/mandel.b
+./pypy/bin/pypy ./bf.py ./examples/mandel.b
 ```
 
 ### With a JIT
 
-The interpreter is actually written in Rpython, so it can be statically compiled using the Pypy toolchain.
-Download the latest source of Pypy and uncompress it in a `pypy-src` folder.
+The interpreter is actually written in RPython, so it can be statically compiled using the Pypy toolchain.
+Download the latest source of Pypy and uncompress it in a `pypy-src` folder. Note that you could also install `rpython` from PyPI.
 
 ```bash
-wget 'https://bitbucket.org/pypy/pypy/downloads/pypy2-v5.6.0-src.tar.bz2'
-tar -xvjf 'pypy2-v5.6.0-src.tar.bz2'
-mv pypy2-v5.6.0-src pypy-src
+wget 'https://downloads.python.org/pypy/pypy3.8-v7.3.7-src.tar.bz2'
+tar -xvjf 'pypy3.8-v7.3.7-src.tar.bz2'
+mv pypy3.8-v7.3.7-src pypy-src
 ```
 
 Then you can build from the Python script `bf.py` an executable binary `bf-c`:
 
 ```bash
 # The compilation will take about 20s
-python pypy-src/rpython/bin/rpython bf.py
+python2 pypy-src/rpython/bin/rpython bf.py
 # Mandelbrot now completes in 32s
 ./bf-c examples/mandel.b
 ```
@@ -78,8 +78,8 @@ python pypy-src/rpython/bin/rpython bf.py
 You can rebuild the `bf-c` using `--opt=jit` to add a JIT to your BrainFuck interpreter:
 
 ```bash
-# The compilation will take about 7m
-python pypy-src/rpython/bin/rpython --opt=jit bf.py
+# The compilation will take about 7m (you can speed this up by using Pypy)
+python2 pypy-src/rpython/bin/rpython --opt=jit bf.py
 # Mandelbrot now completes in about 5 seconds(!)
 ./bf-c examples/mandel.b
 ```
@@ -120,4 +120,4 @@ Here is a summary of the speed gain I could observe on Ubuntu 16.10 (core i7, 8G
 The JIT addition contains code from [this amazing tutorial on JITs](http://morepypy.blogspot.fr/2011/04/tutorial-part-2-adding-jit.html).
 
 If the BrainFuck interpreter `bf.py`  is a bit hairy to look at, you can check out the [step_by_step](step_by_step) folder to go from the simplest interpreter, then a bit better, then
-using only Rpython code, then with the JIT-specific code, then with some final optimizations.
+using only RPython code, then with the JIT-specific code, then with some final optimizations.
