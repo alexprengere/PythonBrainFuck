@@ -48,9 +48,10 @@ python2 ./bf.py examples/mandel.b
 A first simple way of speeding things up is to use Pypy instead of CPython.
 
 ```bash
-wget 'https://downloads.python.org/pypy/pypy2.7-v7.3.6-linux64.tar.bz2'
-tar -xvjf 'pypy2.7-v7.3.6-linux64.tar.bz2'
-mv pypy2.7-v7.3.6-linux64 pypy
+PYPY_VERSION="pypy2.7-v7.3.9"
+wget "https://downloads.python.org/pypy/${PYPY_VERSION}-linux64.tar.bz2"
+tar -xjf "${PYPY_VERSION}-linux64.tar.bz2"
+mv "${PYPY_VERSION}-linux64" pypy
 # Only 1m30 now!
 ./pypy/bin/pypy ./bf.py ./examples/mandel.b
 ```
@@ -61,9 +62,9 @@ The interpreter is actually written in RPython, so it can be statically compiled
 Download the latest source of Pypy and uncompress it in a `pypy-src` folder. Note that you could also install `rpython` from PyPI.
 
 ```bash
-wget 'https://downloads.python.org/pypy/pypy3.8-v7.3.7-src.tar.bz2'
-tar -xvjf 'pypy3.8-v7.3.7-src.tar.bz2'
-mv pypy3.8-v7.3.7-src pypy-src
+wget "https://downloads.python.org/pypy/${PYPY_VERSION}-src.tar.bz2"
+tar -xjf "${PYPY_VERSION}-src.tar.bz2"
+mv "${PYPY_VERSION}-src" pypy-src
 ```
 
 Then you can build from the Python script `bf.py` an executable binary `bf-c`:
